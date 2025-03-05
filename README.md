@@ -1,4 +1,4 @@
-## Zadanie od zákazníka
+## Zadanie od zákazníka(Gongalschi Olexii)
 Naša pizzeria by potrebovala jednoduchý rezervačný systém na objednávanie pizze. Zákazníci by si mohli objednať pizzu online, zvoliť si typ pizze, veľkosť, prípadné prílohy a čas doručenia alebo osobného vyzdvihnutia. Systém by mal umožňovať evidenciu objednávok, notifikácie o stave objednávky a online platbu.
 
 Zákazník by mal mať možnosť vidieť históriu svojich objednávok a hodnotiť objednávku po doručení.
