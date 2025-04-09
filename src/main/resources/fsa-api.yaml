@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Pizza API
+  version: 1.0.0
+  description: API na správu pízz.
+tags:
+  - name: PizzaRest
+    description: Operácie pre správu pízz.
+
+paths:
+  /pizzas:
+    get:
+      summary: Získanie zoznamu pízz
+      operationId: getPizzas
+      tags:
+        - PizzaRest
+      responses:
+        "200":
+          description: Úspešne získané pizze
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PizzasRest"
+    post:
+      summary: Vytvorenie novej pizze
+      operationId: createPizza
+      tags:
+        - PizzaRest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PizzaRest"
+      responses:
+        "201":
+          description: Pizza úspešne vytvorená
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PizzaRest"
+        "400":
+          description: Neplatná požiadavka – validácia zlyhala
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseRest"
+
+components:
+  schemas:
+    PizzaRest:
+      type: object
+      required:
+        - name
+        - size
+        - price
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+          description: Názov pizze
+        size:
+          type: string
+          description: Veľkosť pizze (napr. small, medium, large)
+        price:
+          type: number
+          format: double
+          minimum: 0
+          description: Cena pizze
+        toppings:
+          type: array
+          items:
+            type: string
+          description: Zoznam príloh na pizzu
+
+    PizzasRest:
+      type: object
+      properties:
+        pizzas:
+          type: array
+          items:
+            $ref: "#/components/schemas/PizzaRest"
+
+    ErrorResponseRest:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: HTTP status kód chyby
+        message:
+          type: string
+          description: Popis chyby
+        timestamp:
+          type: integer
+          format: int64
+          description: Časová pečiatka chyby v milisekundách od epochy

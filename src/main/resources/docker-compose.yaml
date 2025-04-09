@@ -1,0 +1,17 @@
+
+services:
+  my-keycloak:
+    image: quay.io/keycloak/keycloak:26.1.3
+    environment:
+      KEYCLOAK_ADMIN: admin         # Admin prístup
+      KEYCLOAK_ADMIN_PASSWORD: admin # Admin heslo
+      KC_LOG_LEVEL: info            # Nastavenie logovania
+    networks:
+      - fsa-network                  # Služba bude pripojená do siete
+    command: ["start-dev"]           # Spustí Keycloak v dev móde
+    ports:
+      - "8080:8080"                  # Porty pre prístup na Keycloak (môžeš zmeniť port podľa potreby)
+
+networks:
+  fsa-network:
+    driver: bridge

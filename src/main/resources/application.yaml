@@ -1,0 +1,36 @@
+
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore.p12
+    key-store-password: keyfsa
+    key-alias: myalias
+auth:
+  users:
+    - username: admin
+      password: admin
+      roles: ["USER", "ADMIN"]
+    - username: user
+      password: user
+      roles: ["USER"]
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pizzadb
+    username: root
+    password: gongalschi
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/FSA
+          jwk-set-uri: http://localhost:8081/realms/FSA/protocol/openid-connect/certs
