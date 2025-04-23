@@ -1,0 +1,8 @@
+<h2>🍕 Zoznam Pizz</h2>
+<ul>
+  <li *ngFor="let pizza of pizzas">
+    <strong>{{ pizza.name }}</strong><br />
+    <em>{{ pizza.ingredients.join(', ') }}</em><br />
+    <span>{{ pizza.price | currency:'EUR' }}</span>
+  </li>
+</ul>
